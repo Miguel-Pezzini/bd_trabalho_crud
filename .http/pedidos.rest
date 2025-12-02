@@ -1,0 +1,24 @@
+@host = http://localhost:3000
+
+### === PEDIDOS ===
+
+### Listar todos os pedidos
+GET {{host}}/pedidos
+
+### Buscar pedido por id (inclui itens)
+GET {{host}}/pedidos/1
+
+### Criar pedido (com itens)
+POST {{host}}/pedidos
+Content-Type: application/json
+
+{
+  "cliente_id": 1,
+  "itens": [
+    { "produto_id": 1, "quantidade": 2 },
+    { "produto_id": 2, "quantidade": 1 }
+  ]
+}
+
+### Deletar pedido
+DELETE {{host}}/pedidos/1

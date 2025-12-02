@@ -1,0 +1,30 @@
+@host = http://localhost:3000
+
+### === PRODUTOS ===
+
+### Listar todos os produtos
+GET {{host}}/produtos
+
+### Buscar produto por id
+GET {{host}}/produtos/1
+
+### Criar produto
+POST {{host}}/produtos
+Content-Type: application/json
+
+{
+  "nome": "Hambúrguer Duplo",
+  "preco": 28.50
+}
+
+### Atualizar produto
+PUT {{host}}/produtos/1
+Content-Type: application/json
+
+{
+  "nome": "Hambúrguer Triplo",
+  "preco": 35.00
+}
+
+### Deletar produto
+DELETE {{host}}/produtos/1
