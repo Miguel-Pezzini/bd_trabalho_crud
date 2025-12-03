@@ -13,7 +13,7 @@ POST {{host}}/produtos
 Content-Type: application/json
 
 {
-  "nome": "Hambúrguer Duplo",
+  "nome": "Pizza Calabresa",
   "preco": 28.50
 }
 

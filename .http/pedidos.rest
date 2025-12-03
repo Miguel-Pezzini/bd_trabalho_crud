@@ -6,7 +6,7 @@
 GET {{host}}/pedidos
 
 ### Buscar pedido por id (inclui itens)
-GET {{host}}/pedidos/1
+GET {{host}}/pedidos/3
 
 ### Criar pedido (com itens)
 POST {{host}}/pedidos

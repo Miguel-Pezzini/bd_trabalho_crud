@@ -27,13 +27,35 @@ exports.buscar = (req, res) => {
         FROM pedidos p
         JOIN clientes c ON c.id = p.cliente_id
         LEFT JOIN itens_pedido ip ON ip.pedido_id = p.id
-        LEFT JOIN produtos pr ON pr.id = ip.prodito_id
+        LEFT JOIN produtos pr ON pr.id = ip.produto_id
         WHERE p.id = ?
         `,
     [req.params.id],
     (err, results) => {
       if (err) return res.status(500).send(err);
-      res.json(results);
+
+          if (results.length === 0) {
+        return res.status(404).json({ mensagem: "Pedido não encontrado" });
+      }
+
+      // Organizar dados: pedido + array de itens
+      const pedido = {
+        pedido_id: results[0].pedido_id,
+        cliente_id: results[0].cliente_id,
+        data_pedido: results[0].data_pedido,
+        cliente: results[0].cliente,
+        itens: results
+          .filter(row => row.item_id !== null)
+          .map(row => ({
+            item_id: row.item_id,
+            produto_id: row.produto_id,
+            produto: row.produto,
+            preco: row.preco,
+            quantidade: row.quantidade
+          }))
+      };
+
+      res.json(pedido);
     }
   );
 };
